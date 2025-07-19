@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jogo-logica
+  labels:
+    app: jogo-logica
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: jogo-logica
+  template:
+    metadata:
+      labels:
+        app: jogo-logica
+    spec:
+      containers:
+      - name: jogo-logica
+        image: phiva1985/jogo-de-logica:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "1024Mi"
+            cpu: "0.5"
+          requests:
+             memory: "512Mi"
+             cpu: "0.3"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      imagePullSecrets:
+      - name: docker-container-registry
