@@ -151,7 +151,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.TOKEN_GITHUB }}
       
       - name: Setup Git config
         run: |
