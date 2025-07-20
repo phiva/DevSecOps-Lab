@@ -165,12 +165,12 @@ jobs:
           REGISTRY: docker.io
         run: |
           NEW_IMAGE="${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
-          sed -i "s|image: .*|image: ${NEW_IMAGE}|g" kubernetes/deployment.yaml
+          sed -i "s|image: .*|image: ${NEW_IMAGE}|g" k8s/deployment.yaml
           echo "Updated deployment to use image: ${NEW_IMAGE}"
-          grep -A 1 "image:" kubernetes/deployment.yaml
+          grep -A 1 "image:" k8s/deployment.yaml
       
       - name: Commit and push changes
         run: |
-          git add kubernetes/deployment.yaml
+          git add k8s/deployment.yaml
           git commit -m "Update Kubernetes deployment with new image tag: ${{ needs.docker.outputs.image_tag }} [skip ci]" || echo "No changes to commit"
           git push
