@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: jogo-logica
-        image: phiva1985/jogo-de-logica:v1
+        image: docker.io/your-dockerhub-username/your-repo-name:sha-b751d133bdb97646febab9c3651d4ee4049eb795
         imagePullPolicy: Always
         ports:
         - containerPort: 80
